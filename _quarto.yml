@@ -33,8 +33,6 @@ format:
     css: styles.css
     toc: true
 
-editor: visual
-
 execute:
   echo: false
   message: false

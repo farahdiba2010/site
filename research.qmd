@@ -6,7 +6,8 @@ title: "Research"
 #| results: asis
 #| message: false
 #| warning: false
-googlesheets4::gs4_auth("julio.trecenti@gmail.com")
+googlesheets4::gs4_deauth()
+googlesheets4::gs4_auth(path = readr::read_file(Sys.getenv("GS4")))
 id <- "10tpzG0y0drzzwbHRbzKdFInklf2eQzSX6iht7E7_BRw"
 da <- googlesheets4::read_sheet(id)
 ```
@@ -58,4 +59,3 @@ da |>
   with(glue::glue("- {content}")) |> 
   cat(sep = "\n")
 ```
-
