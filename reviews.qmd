@@ -4,6 +4,8 @@ title: "Reviews"
 
 ```{r}
 #| column: page
+#| message: false
+#| warning: false
 parse_testimonial <- function(x) {
   
   link <- x |> 
