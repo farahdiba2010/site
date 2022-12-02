@@ -1,0 +1,57 @@
+---
+title: "Reviews"
+---
+
+```{r}
+#| column: page
+parse_testimonial <- function(x) {
+  
+  link <- x |> 
+    xml2::xml_find_first(".//*[@href]") |> 
+    xml2::xml_attr("href")
+  
+  x_clean <- x |> 
+    xml2::as_list() |> 
+    unlist(recursive = TRUE) |> 
+    stringr::str_squish()
+  
+  contents <- x_clean |> 
+    # stringi::stri_enc_toutf8() |> 
+    purrr::discard(\(x) x %in% c("", "[ comment ]", "· 2º", "trabalhava com", "era cliente de", "mas em empresas diferentes", "mas em equipes diferentes", "na mesma equipe", "estudavam na mesma instituição")) |> 
+    unique() |> 
+    stringr::str_subset(
+      "Foto do perfil|grau$|^\\.|respondia a|^Farah Diba$|^[^ ]+$|^. 2.$",
+      negate = TRUE
+    ) |> 
+    stringr::str_remove_all("\\|")
+  
+  tibble::tibble(
+    name = stringr::str_glue("<a href='{link}' target='_blank'>{contents[1]}</a>"),
+    position = contents[2],
+    date = stringr::str_remove_all(contents[3], ",") |> 
+      lubridate::dmy(),
+    text = paste(contents[-c(1:3)], collapse = "\n\n")
+  )
+}
+
+
+res <- xml2::read_html("assets/html/recommendations.html", encoding = "UTF-8") |> 
+  xml2::xml_find_all("//*[@id='main']//ul[@class='pvs-list '][1]/li[contains(@id, 'RECEIVED')]") |> 
+  purrr::map(parse_testimonial) |> 
+  dplyr::bind_rows()
+
+res |> 
+  reactable::reactable(
+    columns = list(
+      name = reactable::colDef("Name", html = TRUE),
+      position = reactable::colDef("Position"),
+      date = reactable::colDef("Date"),
+      text = reactable::colDef("Text", minWidth = 400)
+    ), 
+    striped = TRUE, 
+    highlight = TRUE, 
+    searchable = TRUE
+  )
+
+```
+

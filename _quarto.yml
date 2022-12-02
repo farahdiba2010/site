@@ -1,0 +1,41 @@
+project:
+  type: website
+  output-dir: docs
+  post-render: _cname.R
+
+website:
+  title: "Farah Diba Abrantes-Braga"
+  favicon: assets/img/farah.jpeg
+  navbar:
+    collapse-below: sm
+    right:
+      - href: index.qmd
+        text: Home
+      - href: /assets/pdf/farah_cv.pdf
+        text: Resume
+      - href: research.qmd
+        text: Research
+      - href: teaching.qmd
+        text: Teaching
+      - href: reviews.qmd
+        text: Reviews
+      - href: references.qmd
+        text: References
+      - href: mentoring.qmd
+        text: Mentoring
+  page-footer: 
+    left: "Copyright 2022, Farah Diba Abrantes-Braga" 
+    right: "Built with <a href='https://quarto.org/docs/websites/' target='_blank'>Quarto</a>"
+    
+format:
+  html:
+    theme: united
+    css: styles.css
+    toc: true
+
+editor: visual
+
+execute:
+  echo: false
+  message: false
+  freeze: false

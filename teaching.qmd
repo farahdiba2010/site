@@ -1,0 +1,65 @@
+---
+title: "Teaching"
+image: assets/img/farah-teaching.jpg
+about:
+  id: my-about-teaching
+  template: broadside
+  image-width: 5em
+  image-shape: round
+
+---
+
+
+:::{#my-about-teaching}
+
+```{r}
+#| results: asis
+#| message: false
+#| warning: false
+googlesheets4::gs4_auth("julio.trecenti@gmail.com")
+id <- "10tpzG0y0drzzwbHRbzKdFInklf2eQzSX6iht7E7_BRw"
+da <- googlesheets4::read_sheet(id) |> 
+  dplyr::filter(page == "teaching")
+
+da |> 
+  dplyr::filter(type == "teaching") |> 
+  dplyr::pull(content) |> 
+  cat()
+```
+
+```{r}
+#| results: asis
+#| message: false
+#| warning: false
+
+da |> 
+  dplyr::filter(type == "course") |> 
+  dplyr::group_split(title) |> 
+  purrr::map_chr(\(x) {
+    glue::glue("#### {x$title[1]}\n\n{paste(paste('-', x$content), collapse = '\n')}")
+  }) |> 
+  paste(collapse = "\n\n") |> 
+  cat()
+
+```
+
+### Other teaching experience as invited lecturer
+
+```{r}
+#| results: asis
+#| message: false
+#| warning: false
+
+da |> 
+  dplyr::filter(type == "invited") |> 
+  dplyr::group_split(title) |> 
+  purrr::map_chr(\(x) {
+    glue::glue("#### {x$title[1]}\n\n{paste(paste('-', x$content), collapse = '\n')}")
+  }) |> 
+  paste(collapse = "\n\n") |> 
+  cat()
+
+```
+
+:::
+

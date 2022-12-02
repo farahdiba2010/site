@@ -1,0 +1,61 @@
+---
+title: "Research"
+---
+
+```{r}
+#| results: asis
+#| message: false
+#| warning: false
+googlesheets4::gs4_auth("julio.trecenti@gmail.com")
+id <- "10tpzG0y0drzzwbHRbzKdFInklf2eQzSX6iht7E7_BRw"
+da <- googlesheets4::read_sheet(id)
+```
+
+## Publications
+
+```{r}
+#| results: asis
+#| message: false
+#| warning: false
+da |> 
+  dplyr::filter(page == "index", type == "featured_work") |> 
+  with(glue::glue("{content}")) |> 
+  cat(sep = "\n\n\n<hr>\n\n\n")
+```
+
+## R&R
+
+```{r}
+#| results: asis
+#| message: false
+#| warning: false
+da |> 
+  dplyr::filter(page == "research", type == "rr") |> 
+  with(glue::glue("{content}")) |> 
+  cat(sep = "\n\n\n<hr>\n\n\n")
+```
+
+## Working papers
+
+```{r}
+#| results: asis
+#| message: false
+#| warning: false
+da |> 
+  dplyr::filter(page == "research", type == "working") |> 
+  with(glue::glue("<strong>{title}</strong>. {content}")) |> 
+  cat(sep = "\n\n\n<hr>\n\n\n")
+```
+
+## Grants
+
+```{r}
+#| results: asis
+#| message: false
+#| warning: false
+da |> 
+  dplyr::filter(page == "research", type == "grants") |> 
+  with(glue::glue("- {content}")) |> 
+  cat(sep = "\n")
+```
+

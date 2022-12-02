@@ -1,0 +1,57 @@
+---
+title: "Farah Diba Abrantes-Braga"
+toc: false
+image: assets/img/farah.jpeg
+about:
+  id: my-about
+  template: broadside
+  image-width: 5em
+  image-shape: round
+  links:
+    - icon: envelope
+      text: Email
+      href: mailto:farahdmaab@insper.edu.br
+    - icon: file-pdf
+      text: Resume
+      href: https://jtrecenti.quarto.pub/farah/assets/pdf/farah_cv.pdf
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/farah-diba-abrantes-braga-ph-d-mba-5b239a1/
+---
+
+:::{#my-about}
+
+```{r}
+#| results: asis
+#| message: false
+#| warning: false
+googlesheets4::gs4_auth("julio.trecenti@gmail.com")
+id <- "10tpzG0y0drzzwbHRbzKdFInklf2eQzSX6iht7E7_BRw"
+da <- googlesheets4::read_sheet(id)
+```
+
+
+```{r}
+#| results: asis
+#| message: false
+#| warning: false
+da |> 
+  dplyr::filter(page == "index", type == "about") |> 
+  with(glue::glue("{content}")) |> 
+  cat(sep = "\n\n\n<hr>\n\n\n")
+```
+
+:::
+
+## Featured Work
+
+```{r}
+#| results: asis
+#| message: false
+#| warning: false
+da |> 
+  dplyr::filter(page == "index", type == "featured_work") |> 
+  with(glue::glue("{content}")) |> 
+  cat(sep = "\n\n\n<hr>\n\n\n")
+```
+
