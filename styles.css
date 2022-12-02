@@ -1,0 +1,22 @@
+/* css styles */
+
+div.about-main div.about-contents header#title-block-header.quarto-title-block.default div.quarto-title h1.title {
+  font-size: 1.5rem;
+}
+
+#featured-work.level2 h2 {
+  font-size: 1.5rem;
+}
+
+.about-entity {
+  background-size: 65% !important;
+  background-position: center;
+}
+
+html body.nav-fixed.fullcontent.quarto-light div#quarto-content.quarto-container.page-columns.page-rows-contents.page-layout-article.page-navbar main#quarto-document-content.content.page-columns.page-full div.quarto-about-broadside.column-page {
+  grid-column: screen-start-inset/body-content-end;
+}
+
+#featured-work {
+  grid-column: screen-start-inset/body-content-end;
+}
