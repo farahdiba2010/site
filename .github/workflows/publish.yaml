@@ -38,6 +38,7 @@ jobs:
             any::reactable
             any::knitr
             any::readr
+            any::rmarkdown
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
