@@ -2,6 +2,22 @@
 title: "References"
 ---
 
-Under construction
+```{r}
+#| results: asis
+#| message: false
+#| warning: false
+googlesheets4::gs4_deauth()
+googlesheets4::gs4_auth(path = readr::read_file(Sys.getenv("GS4")))
+id <- "10tpzG0y0drzzwbHRbzKdFInklf2eQzSX6iht7E7_BRw"
+da <- googlesheets4::read_sheet(id)
+```
 
-![](assets/img/construction.jpg)
+```{r}
+#| results: asis
+#| message: false
+#| warning: false
+da |> 
+  dplyr::filter(page == "references", type == "references") |> 
+  with(glue::glue("{content}")) |> 
+  cat(sep = "\n\n\n<hr>\n\n\n")
+```

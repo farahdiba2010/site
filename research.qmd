@@ -12,7 +12,17 @@ id <- "10tpzG0y0drzzwbHRbzKdFInklf2eQzSX6iht7E7_BRw"
 da <- googlesheets4::read_sheet(id)
 ```
 
-## Publications
+```{r}
+#| results: asis
+#| message: false
+#| warning: false
+da |> 
+  dplyr::filter(page == "research", type == "general") |> 
+  with(glue::glue("{content}")) |> 
+  cat(sep = "\n\n\n<hr>\n\n\n")
+```
+
+## Featured Work
 
 ```{r}
 #| results: asis
@@ -36,19 +46,7 @@ da |>
   cat(sep = "\n\n\n<hr>\n\n\n")
 ```
 
-## Working papers
-
-```{r}
-#| results: asis
-#| message: false
-#| warning: false
-da |> 
-  dplyr::filter(page == "research", type == "working") |> 
-  with(glue::glue("<strong>{title}</strong>. {content}")) |> 
-  cat(sep = "\n\n\n<hr>\n\n\n")
-```
-
-## Grants
+## Research Grants and Fellowships
 
 ```{r}
 #| results: asis
@@ -56,6 +54,31 @@ da |>
 #| warning: false
 da |> 
   dplyr::filter(page == "research", type == "grants") |> 
+  with(glue::glue("- {content}")) |> 
+  cat(sep = "\n")
+```
+
+## Academic service
+
+```{r}
+#| results: asis
+#| message: false
+#| warning: false
+da |> 
+  dplyr::filter(page == "research", type == "service") |> 
+  with(glue::glue("- {content}")) |> 
+  cat(sep = "\n")
+```
+
+
+## Conference presentations and research seminars
+
+```{r}
+#| results: asis
+#| message: false
+#| warning: false
+da |> 
+  dplyr::filter(page == "research", type == "conference") |> 
   with(glue::glue("- {content}")) |> 
   cat(sep = "\n")
 ```
