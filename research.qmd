@@ -22,18 +22,6 @@ da |>
   cat(sep = "\n\n\n<hr>\n\n\n")
 ```
 
-## Featured Work
-
-```{r}
-#| results: asis
-#| message: false
-#| warning: false
-da |> 
-  dplyr::filter(page == "index", type == "featured_work") |> 
-  with(glue::glue("{content}")) |> 
-  cat(sep = "\n\n\n<hr>\n\n\n")
-```
-
 ## R&R
 
 ```{r}
@@ -44,18 +32,6 @@ da |>
   dplyr::filter(page == "research", type == "rr") |> 
   with(glue::glue("{content}")) |> 
   cat(sep = "\n\n\n<hr>\n\n\n")
-```
-
-## Research Grants and Fellowships
-
-```{r}
-#| results: asis
-#| message: false
-#| warning: false
-da |> 
-  dplyr::filter(page == "research", type == "grants") |> 
-  with(glue::glue("- {content}")) |> 
-  cat(sep = "\n")
 ```
 
 ## Academic service

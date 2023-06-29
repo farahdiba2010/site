@@ -1,5 +1,5 @@
 ---
-title: "References"
+title: "Featured Work"
 ---
 
 ```{r}
@@ -17,9 +17,19 @@ da <- googlesheets4::read_sheet(id)
 #| message: false
 #| warning: false
 da |> 
-  dplyr::filter(page == "references", type == "references") |> 
+  dplyr::filter(page == "index", type == "featured_work") |> 
   with(glue::glue("{content}")) |> 
   cat(sep = "\n\n\n<hr>\n\n\n")
 ```
 
-**Note**: business-related references upon request.
+## Research Grants and Fellowships
+
+```{r}
+#| results: asis
+#| message: false
+#| warning: false
+da |> 
+  dplyr::filter(page == "research", type == "grants") |> 
+  with(glue::glue("- {content}")) |> 
+  cat(sep = "\n")
+```

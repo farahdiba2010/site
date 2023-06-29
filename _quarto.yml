@@ -13,6 +13,8 @@ website:
         text: Home
       - href: /assets/pdf/farah_cv.pdf
         text: Resume
+      - href: featured.qmd
+        text: Featured Work
       - href: research.qmd
         text: Research
       - href: teaching.qmd
