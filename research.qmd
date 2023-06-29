@@ -22,18 +22,6 @@ da |>
   cat(sep = "\n\n\n<hr>\n\n\n")
 ```
 
-## R&R
-
-```{r}
-#| results: asis
-#| message: false
-#| warning: false
-da |> 
-  dplyr::filter(page == "research", type == "rr") |> 
-  with(glue::glue("{content}")) |> 
-  cat(sep = "\n\n\n<hr>\n\n\n")
-```
-
 ## Academic service
 
 ```{r}

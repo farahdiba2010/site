@@ -1,5 +1,5 @@
 ---
-title: "Farah Diba Abrantes-Braga"
+title: "Farah Diba Abrantes-Braga, PhD"
 toc: false
 image: assets/img/farah.jpeg
 about:
